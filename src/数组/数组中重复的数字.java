@@ -11,6 +11,22 @@ package 数组;
 限制：2 <= n <= 100000
 
 思路： 1.hashmap或hashset   map判断用containsKey  set用（!set.add()）  添加元素返回false说明集合中已存在
+      2.因为数组长度为n，并且元素都在0-n-1范围内，所以可以遍历数组，将元素x与放在下标为x的位置上去，
+        若元素x与下标为x的元素相等，则元素x就是数组中第一个重复的数字
  */
 public class 数组中重复的数字 {
+    public int findRepeatNumber(int[] nums) {
+        for(int i=0;i<nums.length;i++){
+            if(nums[i]!=i){
+                if(nums[i]==nums[nums[i]])
+                    return nums[i];
+                else{
+                    int temp = nums[nums[i]];
+                    nums[nums[i]] = nums[i];
+                    nums[i] = temp;
+                }
+            }
+        }
+        return 0;
+    }
 }
